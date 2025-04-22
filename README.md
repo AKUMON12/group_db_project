@@ -10,6 +10,9 @@ This is the **backend API** for the Student Information System, built using **No
 ## 📁 Project Structure
 
 ```
+
+---
+
 BACKEND/
 │
 ├── config/               # Database connection settings
@@ -145,19 +148,6 @@ Content-Type: application/json
 
 ---
 
-## 📝 License
-
-This project is for academic use only. All rights reserved.
-
-```
-
----
-
-
-
-
-
-```
 ## Here's a breakdown of the backend folder structure and the purpose of each file/folder:
 
 ---
