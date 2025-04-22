@@ -134,7 +134,9 @@ Content-Type: application/json
 ## 👨‍💻 Team Members
 
 - **Tristan Howard** – Developer / Project Leader
-- (Add your teammates here)
+- **Santoya, Vince Andre** - Developer
+- **Gorzon, Randulph**
+- **Tundag, Marlyn**
 
 ---
 
