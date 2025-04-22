@@ -1,6 +1,6 @@
 # group_db_project
 
-```markdown
+markdown
 # 📦 Student Information System – Backend
 
 This is the **backend API** for the Student Information System, built using **Node.js**, **Express**, and **MySQL**. It handles user registration, login (with JWT authentication), and CRUD operations for both Admins and Students.
@@ -9,10 +9,7 @@ This is the **backend API** for the Student Information System, built using **No
 
 ## 📁 Project Structure
 
-
-
----
-
+```
 BACKEND/
 │
 ├── config/               # Database connection settings
@@ -42,6 +39,9 @@ BACKEND/
 ├── package.json          # Project metadata and dependencies
 ├── package-lock.json
 └── README.md             # Project documentation
+
+
+
 ```
 
 ---
