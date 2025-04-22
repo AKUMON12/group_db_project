@@ -9,39 +9,39 @@ This is the **backend API** for the Student Information System, built using **No
 
 ## 📁 Project Structure
 
-```
+
 
 ---
 
-- BACKEND/
-- │
-- ├── config/               # Database connection settings
-- │   └── db.js
-- │
-- ├── controllers/          # Route handler logic
-- │   ├── admin.controller.js
-- │   ├── auth.controller.js
-- │   └── student.controller.js
-- │
-- ├── middleware/           # Middleware for JWT auth
-- │   └── auth.middleware.js
-- │
-- ├── models/               # DB logic (SQL queries)
-- │   ├── admin.model.js
-- │   └── student.model.js
-- │
-- ├── routes/               # API endpoints
-- │   ├── admin.routes.js
-- │   ├── auth.routes.js
-- │   └── student.routes.js
-- │
-- ├── uploads/              # (Optional) File upload storage
-- │
-- ├── .env                  # Environment variables (DB, JWT secret, etc.)
-- ├── server.js             # Entry point – starts Express server
-- ├── package.json          # Project metadata and dependencies
-- ├── package-lock.json
-- └── README.md             # Project documentation
+BACKEND/
+│
+├── config/               # Database connection settings
+│   └── db.js
+│
+├── controllers/          # Route handler logic
+│   ├── admin.controller.js
+│   ├── auth.controller.js
+│   └── student.controller.js
+│
+├── middleware/           # Middleware for JWT auth
+│   └── auth.middleware.js
+│
+├── models/               # DB logic (SQL queries)
+│   ├── admin.model.js
+│   └── student.model.js
+│
+├── routes/               # API endpoints
+│   ├── admin.routes.js
+│   ├── auth.routes.js
+│   └── student.routes.js
+│
+├── uploads/              # (Optional) File upload storage
+│
+├── .env                  # Environment variables (DB, JWT secret, etc.)
+├── server.js             # Entry point – starts Express server
+├── package.json          # Project metadata and dependencies
+├── package-lock.json
+└── README.md             # Project documentation
 ```
 
 ---
