@@ -1,0 +1,163 @@
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Admin Panel</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a routerLink="/admin/dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/admin/profile">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/admin/settings">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+                <li>
+                    <a (click)="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Students</h5>
+                    <p class="card-text">{{ totalStudents }}</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Similar Surnames</h5>
+                    <p class="card-text">{{ similarSurnames }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Add Student -->
+        <div class="action-bar">
+            <div class="search-box">
+                <input type="text" [(ngModel)]="searchTerm" (keyup)="searchStudents()"
+                    placeholder="Search by ID or Last Name" class="form-control">
+            </div>
+            <button class="btn btn-primary" (click)="openAddModal()">
+                <i class="fas fa-plus"></i> Add Student
+            </button>
+        </div>
+
+        <!-- Students Table -->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Profile Picture</th>
+                        <th>ID Number</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students">
+                        <td>
+                            <img [src]="student.profilePicture || 'assets/default-profile.png'" alt="Profile Picture"
+                                class="profile-picture">
+                        </td>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.lastName }}</td>
+                        <td>{{ student.firstName }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.phoneNumber }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-info btn-sm" (click)="openEditModal(student)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm" (click)="openDeleteModal(student)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Student Modal -->
+<div class="modal" [class.show]="showAddModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Student</h5>
+                <button type="button" class="close" (click)="closeModals()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-student-form (submit)="addStudent($event)" (cancel)="closeModals()"></app-student-form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Student Modal -->
+<div class="modal" [class.show]="showEditModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Student</h5>
+                <button type="button" class="close" (click)="closeModals()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-student-form [student]="selectedStudent" (submit)="updateStudent($event)"
+                    (cancel)="closeModals()"></app-student-form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal" [class.show]="showDeleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="close" (click)="closeModals()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this student?</p>
+                <p><strong>{{ selectedStudent?.firstName }} {{ selectedStudent?.lastName }}</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModals()">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="deleteStudent()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

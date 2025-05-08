@@ -1,0 +1,97 @@
+<div class="register-container">
+    <div class="register-box">
+        <h2>Student Registration</h2>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <!-- Last Name -->
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" formControlName="lastName" class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched}">
+                <div class="invalid-feedback"
+                    *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+                    {{ getErrorMessage('lastName') }}
+                </div>
+            </div>
+
+            <!-- First Name -->
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" formControlName="firstName" class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched}">
+                <div class="invalid-feedback"
+                    *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+                    {{ getErrorMessage('firstName') }}
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" formControlName="email" class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
+                <div class="invalid-feedback"
+                    *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    {{ getErrorMessage('email') }}
+                </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched}">
+                <div class="invalid-feedback"
+                    *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
+                    {{ getErrorMessage('phoneNumber') }}
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" formControlName="password" class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
+                <div class="invalid-feedback"
+                    *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                    {{ getErrorMessage('password') }}
+                </div>
+                <small class="form-text text-muted">
+                    Password must be at least 12 characters long and include uppercase, lowercase, numbers, and special
+                    characters.
+                </small>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched}">
+                <div class="invalid-feedback"
+                    *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+                    {{ getErrorMessage('confirmPassword') }}
+                </div>
+            </div>
+
+            <!-- Error message -->
+            <div class="alert alert-danger" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+
+            <!-- Success message -->
+            <div class="alert alert-success" *ngIf="successMessage">
+                {{ successMessage }}
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!registerForm.valid">
+                Register
+            </button>
+
+            <!-- Login link -->
+            <div class="text-center mt-3">
+                Already have an account? <a routerLink="/login">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
