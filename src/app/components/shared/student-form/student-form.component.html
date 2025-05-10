@@ -1,0 +1,67 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <!-- Profile Picture Upload -->
+    <div class="form-group">
+        <label>Profile Picture</label>
+        <div class="profile-picture-upload">
+            <div class="preview"
+                [style.background-image]="previewUrl ? 'url(' + previewUrl + ')' : 'url(assets/default-profile.png)'">
+                <input type="file" accept="image/*" (change)="onFileSelected($event)" class="file-input">
+                <div class="upload-overlay">
+                    <i class="fas fa-camera"></i>
+                    <span>Change Photo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" formControlName="lastName" class="form-control"
+            [ngClass]="{'is-invalid': studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched}">
+        <div class="invalid-feedback"
+            *ngIf="studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched">
+            {{ getErrorMessage('lastName') }}
+        </div>
+    </div>
+
+    <!-- First Name -->
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" formControlName="firstName" class="form-control"
+            [ngClass]="{'is-invalid': studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched}">
+        <div class="invalid-feedback"
+            *ngIf="studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched">
+            {{ getErrorMessage('firstName') }}
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" formControlName="email" class="form-control"
+            [ngClass]="{'is-invalid': studentForm.get('email')?.invalid && studentForm.get('email')?.touched}">
+        <div class="invalid-feedback" *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched">
+            {{ getErrorMessage('email') }}
+        </div>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="form-control"
+            [ngClass]="{'is-invalid': studentForm.get('phoneNumber')?.invalid && studentForm.get('phoneNumber')?.touched}">
+        <div class="invalid-feedback"
+            *ngIf="studentForm.get('phoneNumber')?.invalid && studentForm.get('phoneNumber')?.touched">
+            {{ getErrorMessage('phoneNumber') }}
+        </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">
+            {{ student ? 'Update' : 'Add' }} Student
+        </button>
+    </div>
+</form>
