@@ -1,5 +1,7 @@
+// Angular core imports
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+// Service imports
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -19,7 +21,8 @@ export class RoleGuard implements CanActivate {
             return true;
         }
 
-        this.router.navigate(['/dashboard']);
+        // Redirect to student dashboard instead of a non-existent '/dashboard' route
+        this.router.navigate(['/student/dashboard']);
         return false;
     }
 }

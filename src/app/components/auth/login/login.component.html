@@ -8,6 +8,9 @@
                 <label for="username">{{ isAdminLogin ? 'Username' : 'ID Number' }}</label>
                 <input type="text" id="username" formControlName="username" class="form-control"
                     [placeholder]="isAdminLogin ? 'Enter username' : 'Enter ID number'">
+                <div *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty || loginForm.get('username').touched)" class="text-danger">
+                    <small *ngIf="loginForm.get('username').errors?.required">This field is required</small>
+                </div>
             </div>
 
             <!-- Password field (Admin only) -->
@@ -15,6 +18,9 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" formControlName="password" class="form-control"
                     placeholder="Enter password">
+                <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)" class="text-danger">
+                    <small *ngIf="loginForm.get('password').errors?.required">Password is required</small>
+                </div>
             </div>
 
             <!-- Email field (Student only) -->
@@ -22,6 +28,10 @@
                 <label for="email">Email Address</label>
                 <input type="email" id="email" formControlName="email" class="form-control"
                     placeholder="Enter email address">
+                <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="text-danger">
+                    <small *ngIf="loginForm.get('email').errors?.required">Email is required</small>
+                    <small *ngIf="loginForm.get('email').errors?.email">Please enter a valid email address</small>
+                </div>
             </div>
 
             <!-- Remember Me checkbox -->
@@ -39,18 +49,19 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">
-                Login
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid || isSubmitting">
+                <span *ngIf="isSubmitting">Logging in...</span>
+                <span *ngIf="!isSubmitting">Login</span>
             </button>
 
             <!-- Forgot Password link (Student only) -->
             <div class="text-center mt-3" *ngIf="!isAdminLogin">
-                <a href="#" (click)="forgotPassword()">Forgot Password?</a>
+                <a href="#" (click)="forgotPassword($event)">Forgot Password?</a>
             </div>
 
             <!-- Toggle login type -->
             <div class="text-center mt-3">
-                <a href="#" (click)="toggleLoginType()">
+                <a href="#" (click)="toggleLoginType(); $event.preventDefault()">
                     {{ isAdminLogin ? 'Login as Student' : 'Login as Admin' }}
                 </a>
             </div>

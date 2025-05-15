@@ -1,5 +1,8 @@
+// Angular core imports
 import { Component, OnInit } from '@angular/core';
+// Service imports
 import { StudentService } from '../../../services/student.service';
+// Model imports
 import { Student } from '../../../models/student.model';
 
 @Component({

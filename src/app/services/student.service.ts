@@ -1,6 +1,9 @@
+// Angular core imports
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// RxJS imports
 import { Observable } from 'rxjs';
+// Environment and model imports
 import { environment } from '../../environments/environment';
 import { Student, StudentResponse } from '../models/student.model';
 
@@ -41,7 +44,7 @@ export class StudentService {
     uploadProfilePicture(id: number, file: File): Observable<any> {
         const formData = new FormData();
         formData.append('profilePicture', file);
-        return this.http.post(`${this.apiUrl}/${id}/profile-picture`, formData);
+        return this.http.post<any>(`${this.apiUrl}/${id}/profile-picture`, formData);
     }
 
     // Get similar surnames count

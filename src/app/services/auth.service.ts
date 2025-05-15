@@ -1,7 +1,10 @@
+// Angular core imports
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// RxJS imports
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+// Environment imports
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,10 +17,10 @@ export class AuthService {
 
     // Admin login
     adminLogin(username: string, password: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/admin/login`, { username, password })
+        return this.http.post<any>(`${this.apiUrl}/admin/login`, { username, password })
             .pipe(map(response => {
-                if (response['token']) {
-                    localStorage.setItem('token', response['token']);
+                if (response.token) {
+                    localStorage.setItem('token', response.token);
                     localStorage.setItem('userType', 'admin');
                 }
                 return response;
@@ -26,10 +29,10 @@ export class AuthService {
 
     // Student login
     studentLogin(id: string, email: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/student/login`, { id, email })
+        return this.http.post<any>(`${this.apiUrl}/student/login`, { username: id, email })
             .pipe(map(response => {
-                if (response['token']) {
-                    localStorage.setItem('token', response['token']);
+                if (response.token) {
+                    localStorage.setItem('token', response.token);
                     localStorage.setItem('userType', 'student');
                 }
                 return response;
@@ -38,7 +41,7 @@ export class AuthService {
 
     // Student registration
     studentRegister(studentData: any): Observable<any> {
-        return this.http.post(`${this.apiUrl}/student/register`, studentData);
+        return this.http.post<any>(`${this.apiUrl}/student/register`, studentData);
     }
 
     // Logout
